@@ -1,0 +1,40 @@
+- name: Install UFW and Fail2Ban
+  apt:
+    name:
+      - ufw
+      - fail2ban
+    state: latest
+    update_cache: yes
+
+- name: Reset UFW
+  ufw:
+    state: reset
+
+- name: Set Default Firewall Policies (Deny All)
+  ufw:
+    default: deny
+    direction: incoming
+
+- name: Set Default Outgoing Policy (Allow)
+  ufw:
+    default: allow
+    direction: outgoing
+
+- name: Allow SSH (Avoid Locking Out)
+  ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+      
+- name: Enable UFW
+  ufw:
+    state: enabled
+
+- name: Configure fail2ban for SSH
+  template:
+    src: jail.local.j2
+    dest: /etc/fail2ban/jail.local
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart_fail2ban

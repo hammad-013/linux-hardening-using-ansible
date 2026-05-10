@@ -1,0 +1,12 @@
+- name: Restart_Journald
+  service:
+    name: systemd-journald
+    state: restarted
+
+- name: Restart_Auditd
+  service:
+    name: auditd
+    state: restarted
+
+- name: Load_Rules
+  command: augenrules --load

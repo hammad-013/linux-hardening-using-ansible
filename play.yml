@@ -1,0 +1,9 @@
+---
+
+- name: Harden Linux
+  become: yes
+  hosts: servers
+  roles:
+    - ssh
+    - firewall
+    - logging

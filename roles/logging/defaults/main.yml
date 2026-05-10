@@ -1,0 +1,28 @@
+audit_rules:
+  - path: /etc/passwd
+    perms: wa
+    key: passwd_changes
+
+  - path: /etc/shadow
+    perms: wa
+    key: shadow_changes
+
+  - path: /etc/group
+    perms: wa
+    key: group_changes
+
+  - path: /etc/gshadow
+    perms: wa
+    key: gshadow_changes
+
+  - path: /etc/sudoers
+    perms: wa
+    key: sudo_changes
+
+  - path: /etc/sudoers.d
+    perms: wa
+    key: sudoers_d_changes
+
+  - path: /var/log/auth.log
+    perms: wa
+    key: auth_log_changes
