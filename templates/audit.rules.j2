@@ -1,0 +1,13 @@
+# Audit rules managed by Ansible
+
+{% if audit_passwd %}
+-w /etc/passwd -p wa -k passwd_changes
+{% endif %}
+
+{% if audit_shadow %}
+-w /etc/shadow -p wa -k shadow_changes
+{% endif %}
+
+{% if audit_sudo %}
+-w /etc/sudoers -p wa -k sudo_changes
+{% endif %}

@@ -1,0 +1,21 @@
+---
+
+- name: Fail2Ban
+  hosts: servers
+  become: yes
+  tasks:
+
+  - name: Configure fail2ban for SSH
+    template:
+      src: jail.local.j2
+      dest: /etc/fail2ban/jail.local
+      owner: root
+      group: root
+      mode: 0644
+    notify: Restart_fail2ban
+    
+  handlers:
+    - name: Restart_fail2ban
+      service:
+        name: fail2ban
+        state: restarted

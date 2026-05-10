@@ -1,0 +1,19 @@
+# {{ ansible_managed }}
+
+[DEFAULT]
+# Ban IP for 10 minutes after 5 failed attempts
+bantime  = {{ bantime | default('10m') }}
+findtime = {{ findtime | default('10m') }}
+maxretry = 5
+
+# Ignore local addresses
+ignoreip = 127.0.0.1/8 ::1
+
+[sshd]
+enabled = true
+port    = {{ ssh_port | default('ssh') }}
+filter  = sshd
+logpath = /var/log/auth.log
+backend = systemd
+maxretry = {{ ssh_maxretry | default('3') }}
+bantime  = {{ ssh_bantime | default('1h') }}

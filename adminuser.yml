@@ -1,0 +1,14 @@
+---
+
+- name: User Privilege Management
+  hosts: servers
+  become: yes
+  tasks:
+
+  - name: Create Admin User
+    user:
+      name: secadmin
+      shell: /bin/bash
+      groups: sudo
+      append: yes
+      create_home: yes
